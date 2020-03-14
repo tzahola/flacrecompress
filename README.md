@@ -2,6 +2,14 @@
 
 Re-compress FLAC files in parallel and report total savings.
 
+## Dependencies
+
+- `flac` for re-compressing FLAC files
+- `metaflac` for stripping padding and pictures
+- GNU `parallel` for parallel processing
+
+## Usage
+
 ```
 Usage:
     flacrecompress [options] -- files ...
