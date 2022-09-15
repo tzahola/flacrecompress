@@ -58,6 +58,12 @@ if [[ $parallel == 0 ]]; then
         flac -Vws --best -fo "$tmp" -- "$f"
         metaflac --dont-use-padding --remove --block-type=PICTURE,PADDING "$tmp"
 
+        if [[ "$(metaflac --show-md5sum --no-filename "$f")" != "$(metaflac --show-md5sum --no-filename "$tmp")" ]]; then
+            echo "Error! MD5 mismatch:"
+            metaflac --show-md5sum "$f" "$tmp"
+            exit 1
+        fi
+
         old_size=$(stat -f %z "$f")
         new_size=$(stat -f %z "$tmp")
 
